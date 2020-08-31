@@ -7,14 +7,14 @@ app = Flask(__name__)
 def home():
     return render_template('index.html')
 
-@app.route('/detik-terpopuler')
-def detik_terpopuler():
+@app.route('/detik')
+def scrape_detik():
     html_doc = requests.get("https://www.detik.com/terpopuler")
     soup = BeautifulSoup(html_doc.text,"html.parser")
     populer_area = soup.find(attrs={"class":"grid-row list-content"})
     title = populer_area.findAll(attrs={"class":"media__text"})
     images = populer_area.findAll(attrs={"class":"media__image"})
-    return render_template("index.html", images=images)
+    return render_template('index.html',images=images)
 
 if __name__ == '__main__':
     app.run(debug=True)

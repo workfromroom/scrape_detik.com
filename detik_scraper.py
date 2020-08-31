@@ -11,5 +11,8 @@ title = populer_area.findAll(attrs={"class":"media__text"})
 
 image = populer_area.findAll(attrs={"class":"media__image"})
 
+for i in title:
+    print(i.text)
+
 for i in image:
     print(i.find('a').find("img"))
